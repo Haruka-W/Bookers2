@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+  <p id ="notice"></p>
+  <h2>Book detail</h2>
+  <table>
+  	<tbody>
+  	  <tr>
+      <td><%= @book.user.name %></td>
+  		<td><%= @book.title %></td>
+  		<td><%= @book.body %></td>
+  		<td><%= link_to "Edit", edit_book_path(@book) %></td>
+      <td>
+        <% if @book.user == current_user %>
+        <%= link_to "Destroy", book_path(@book), method: :delete, data:{confirm: "本当に消しますか？"} %>
+        <% end %>
+      </td>
+  	  </tr>
+  	</tbody>
+  </table>
+
+ </body>
+
+</html>
