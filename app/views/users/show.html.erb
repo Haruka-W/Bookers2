@@ -5,11 +5,26 @@
 </head>
 
 <body>
-  <p id ="notice"></p>
-  <h1>Books</h1>
+  <div class="container">
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+  <div class="row">
+
+    <div class="col-xs-3">
+      <%= render 'books/list', book: @book, user: @user %>
+    </div>
+
+  <div class="col-xs-9">
+  <h2>Books</h2>
   <table>
   	<thead>
   	  <tr>
+        <th></th>
   	  	<th>Title</th>
   	  	<th>Opinion</th>
   	  	<th colspan="3"></th>
@@ -18,15 +33,19 @@
   	<% @books.each do |book| %>
   	<tbody>
   	  <tr>
-  		  <td>
-          <%= link_to book.title,book_path(book) %>
+        <td>
+            <%= link_to attachment_image_tag(book.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg"), user_path(book.user) %>
         </td>
+  		  <td><%= link_to book.title,book_path(book) %></td>
   		  <td><%= book.body %></td>
   	  </tr>
   	</tbody>
   	<% end %>
   </table>
+  </div>
 
+  </div>
+  </div>
  </body>
 
 </html>
