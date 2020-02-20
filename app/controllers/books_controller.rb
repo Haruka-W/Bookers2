@@ -1,6 +1,15 @@
 class BooksController < ApplicationController
 
 before_action :authenticate_user!
+before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+
+  def ensure_correct_user
+    @book = Book.find_by(id:params[:id])
+    if @book.user_id != current_user.id
+      flash[:notice] = "このbookは編集できません"
+      redirect_to books_path
+    end
+  end
 
   def top
   end
@@ -38,11 +47,11 @@ before_action :authenticate_user!
   end
 
   def update
-  	book = Book.find(params[:id])
-  	book.update(book_params)
-    if book.save
+  	@book = Book.find(params[:id])
+  	@book.update(book_params)
+    if @book.save
     flash[:notice] = "You have updated book successfully."
-    redirect_to book_path(book)
+    redirect_to book_path(@book)
     else
     render 'books/edit'
     end

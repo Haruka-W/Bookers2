@@ -8,6 +8,7 @@
 
     <% if @user.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
+        <h1><%= @user.errors.count %>  error prohibited this obj from being saved:</h1>
         <ul>
           <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>

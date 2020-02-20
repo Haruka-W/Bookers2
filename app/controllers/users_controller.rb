@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_correct_user, {only: [:edit, :update]}
+
+  def ensure_correct_user
+    @user = User.find_by(id:params[:id])
+    if @user.id != current_user.id
+      flash[:notice] = "このユーザーは編集できません"
+      redirect_to user_path(current_user)
+    end
+  end
+
 
   def index
   	@users = User.all

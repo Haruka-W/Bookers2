@@ -29,7 +29,7 @@
   	<tbody>
   	  <tr>
         <td>
-          <%= link_to attachment_image_tag(user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg"), user_path(user) %>
+          <%= link_to attachment_image_tag(user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg"), user_path(user) %>
         </td>
   		  <td>
           <%= user.name %>

@@ -43,3 +43,42 @@
       color: white;
       font-size: 30px;
     }
+
+  .notice {
+    color: green;
+  }
+
+  .alert {
+    color: red;
+  }
+
+  table tr {
+    text-align: left;
+    padding: 10px;
+  }
+
+  table th {
+    text-align: left;
+    padding: 10px;
+  }
+
+  .table {
+    border-top: 1px solid gray;
+    padding: 10px;
+  }
+
+  h2 {
+    margin: 20px 0;
+  }
+
+  .btn {
+    margin: 10px 0;
+  }
+
+  .user_info {
+    margin: 10px 0;
+  }
+
+  .new_book {
+    margin: 10px 0;
+  }
