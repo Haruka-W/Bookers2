@@ -32,7 +32,7 @@
         <th></th>
   	  	<th>Title</th>
   	  	<th>Opinion</th>
-  	  	<th colspan="4"></th>
+  	  	<th colspan="5"></th>
   	  </tr>
   	</thead>
   	<% @books.each do |book| %>
@@ -45,6 +45,24 @@
         </td>
   		  <td><%= link_to book.title,book_path(book) %></td>
   		  <td><%= book.body %></td>
+        <!-- いいねボタンを追加 -->
+        <td>
+          <% if book.favorited_by?(current_user) %>
+            <li>
+              <%= link_to book_favorites_path(book), method: :delete do %>
+                <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+                <%= book.favorites.count %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to book_favorites_path(book), method: :post do %>
+                <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
+                <%= book.favorites.count %>
+              <% end %>
+            </li>
+          <% end %>
+        </td>
         <!-- コメント件数表示を追加 -->
         <td>コメント数：<%= book.book_comments.count %></td>
   	  </tr>
