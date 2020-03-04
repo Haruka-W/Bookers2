@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about"
 
   devise_for :users
-  resources :books
+  resources :books do
+    resource :book_comments, only: [:create]
+  end
   resources :users
   delete '/books' => 'books#index'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

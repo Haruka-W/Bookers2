@@ -26,6 +26,8 @@
         </td>
   		  <td><%= @book.title %></td>
   		  <td><%= @book.body %></td>
+        <!-- コメント件数表示を追加 -->
+        <td>コメント数：<%= @book.book_comments.count %></td>
         <td>
           <% if @book.user == current_user %>
           <%= link_to 'Edit', edit_book_path(@book), class: "btn-sm btn-success" %>
@@ -39,6 +41,15 @@
   	  </tr>
   	</tbody>
   </table>
+  </div>
+
+  <!-- コメント投稿欄 -->
+  <%= form_for [@book, @book_comment] do |f| %>
+    <div class="col-xs-9">
+      <%= f.text_area :comment,rows:'5', placeholder: "コメントを入力してください" %>
+    </div>
+    <%= f.submit "送信", class: "btn btn-base-1 mt-20 pull-right" %>
+  <% end %>
 
  </body>
 
