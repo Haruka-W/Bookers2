@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :books do
     resource :book_comments, only: [:create]
   end
+  resources :book_comments, only: [:destroy]
   resources :users
   delete '/books' => 'books#index'
 
