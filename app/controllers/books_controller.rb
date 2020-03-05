@@ -11,9 +11,6 @@ before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
     end
   end
 
-  def top
-  end
-
   def index
   	@books = Book.all
   	@book = Book.new

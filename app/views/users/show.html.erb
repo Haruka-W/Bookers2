@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-</head>
-
-<body>
   <div class="container">
-
-
   <div class="row">
 
     <div class="col-xs-3">
-      <%= render 'books/list', book: @book, user: @user %>
+      <%= render 'info', user: @user,now: ''%>
+      <%= render 'relationships/follow_button', user: @user %>
+      <%= render 'books/form', book: @book %>
     </div>
 
   <div class="col-xs-9">
@@ -42,6 +35,3 @@
 
   </div>
   </div>
- </body>
-
-</html>

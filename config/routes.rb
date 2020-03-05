@@ -10,6 +10,14 @@ Rails.application.routes.draw do
   end
   resources :book_comments, only: [:destroy]
   resources :users
+  # フォロー機能↓
+  resources :relationships, only: [:create, :destroy]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   delete '/books' => 'books#index'
 
 
