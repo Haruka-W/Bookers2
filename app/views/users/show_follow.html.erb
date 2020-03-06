@@ -1,41 +1,6 @@
 <h1>Follow Users</h1>
-  <table>
-  	<thead>
-  	  <tr>
-  	  	<th>image</th>
-  	  	<th>name</th>
-  	  	<th colspan="6"></th>
-  	  </tr>
-  	</thead>
-  	<tbody>
-      <% @users.each do |user| %>
-	  <tr>
-        <td>
-          <%= link_to attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg"), user_path(user) %>
-        </td>
-  		  <td>
-          <%= user.name %>
-        </td>
-        <td>フォロー数：<%= user.followings.count %></td>
-  		  <td>フォロワー数：<%= user.followers.count %></td>
-        <td>
-          <% unless current_user == user %>
-            <% if current_user.following?(user) %>
-              <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
-                <%= f.hidden_field :follow_id, :value => user.id %>
-                <%= f.submit 'フォロー外す' %>
-              <% end %>
-            <% else %>
-              <%= form_for(current_user.relationships.build) do |f| %>
-                <%= f.hidden_field :follow_id, :value => user.id %>
-                <%= f.submit 'フォローする' %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', user_path(user) %></td>
-  	  </tr>
-  	  <% end %>
-    </tbody>
- </table>
-
+<% if @users.count > 0 %>
+  <%= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

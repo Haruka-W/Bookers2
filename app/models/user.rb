@@ -34,4 +34,13 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  # 検索機能↓
+  def self.searsh(searsh)
+    if searsh
+      User.where(['name LILE ?', "%#{searsh}%"])
+    else
+      User.all
+    end
+  end
+
 end
