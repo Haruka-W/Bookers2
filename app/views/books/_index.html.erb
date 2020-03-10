@@ -1,3 +1,4 @@
+<div id="favorite_index">
 <h1>Books</h1>
       <table>
   	  <thead>
@@ -22,14 +23,14 @@
           <td>
             <% if book.favorited_by?(current_user) %>
             <li>
-              <%= link_to book_favorites_path(book), method: :delete do %>
+              <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
                 <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
                 <%= book.favorites.count %>
               <% end %>
             </li>
             <% else %>
             <li>
-              <%= link_to book_favorites_path(book), method: :post do %>
+              <%= link_to book_favorites_path(book), method: :post, remote: true do %>
                 <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
                 <%= book.favorites.count %>
               <% end %>
@@ -42,3 +43,4 @@
   	  </tbody>
   	  <% end %>
       </table>
+</div>
